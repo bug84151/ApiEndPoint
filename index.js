@@ -6,13 +6,13 @@ api.use(express.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || "8888";
 
-const user = [
-  {
-    message: "Submission Recieved",
-    name: "John Doe",
-    email: "john@gmail.com",
-  },
-];
+// const user = [
+//   {
+//     message: "Submission Recieved",
+//     name: "John Doe",
+//     email: "john@gmail.com",
+//   },
+// ];
 
 api.post("/api/submit", (req, res) => {
   if (!req.body.name) {
@@ -20,7 +20,10 @@ api.post("/api/submit", (req, res) => {
   } else if (!req.body.email) {
     res.send("email field is required");
   } else {
-    res.send(user);
+    res.send({
+      name: req.body.name,
+      email: req.body.email,
+    });
   }
 });
 
